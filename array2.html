@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input id="newDestination">
+    <button onclick="addDestination()">Add</button>
+    <button onclick="popDestination()">Pop</button>
+
+    <div id="destinationsDisplay"></div>
+
+    <script>
+        let myDestinations = ['Barcelona', 'London', 'Berlin'];
+
+        function popDestination(index) {
+            if (myDestinations.length === 0) {
+                destinationsDisplay.innerHTML = 'Nothing Left';
+            } else {
+                myDestinations.splice(index, 1);
+                destinationsDisplay.innerHTML = destinationHTMLwithButtons();
+            }
+        }
+
+
+        function addDestination() {
+            if (!myDestinations.includes(newDestination.value)){
+                myDestinations.push(newDestination.value);
+                destinationsDisplay.innerHTML = destinationHTMLwithButtons();
+            }
+        }
+        destinationsDisplay.innerHTML = destinationHTMLwithButtons();
+
+
+        function destinationHTMLwithButtons() {
+            let finalHTML = '';
+            for (let i = 0; i < myDestinations.length; i++) {
+                const element = myDestinations[i];
+                let elementHTML = '<div>' + (i + 1) + '. <span style="color: red;">' + element + '<button onclick="popDestination(' + i + ')">Delete</button></div>';
+                finalHTML = finalHTML + elementHTML
+            }
+            return finalHTML;
+        }
+
+    </script>
+</body>
+</html>

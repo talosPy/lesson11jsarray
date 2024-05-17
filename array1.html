@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<input id="'newDestination">
+<button onclick="addDest()">Add</button>
+<div id ='destinationsDisplay'></div>
+    <script>
+        let myDestination = ['Barcelona' , 'London' , 'Thailand']
+        console.log(myDestination)
+        myDestination.push('New York') // להוסיף למערך
+        myDestination.pop() // להוריד את האחרון מהמערך
+        destinationsDisplay.innerHTML = myDestination.join('<br>') 
+
+        function addDest(){
+            myDestination.push(newDestination.value)
+            destinationsDisplay.innerHTML = myDestination.join('<br>')
+        }
+
+
+    </script>
+</body>
+</html>

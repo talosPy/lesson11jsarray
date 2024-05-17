@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="newDestination">
+    <button onclick="addDestination()">Add</button>
+    <button onclick="popDestination()">Pop</button>
+
+    <div id="destinationsDisplay"></div>
+
+    <script>
+        let myDestinations = ['Barcelona', 'London', 'Thailand'];
+        let destinationsDisplay = document.getElementById('destinationsDisplay');
+        let newDestinationInput = document.getElementById('newDestination');
+
+        function updateDisplay() {
+            if (myDestinations.length === 0) {
+                destinationsDisplay.innerHTML = 'Nothing Left to Pop';
+            } else {
+                destinationsDisplay.innerHTML = myDestinations.join('<br>');
+            }
+        }
+
+        function popDestination() {
+            if (myDestinations.length > 0) {
+                myDestinations.pop();
+                updateDisplay();
+            }
+        }
+
+        function addDestination() {
+            let newDestination = newDestinationInput.value.trim();
+
+            if (newDestination && !myDestinations.includes(newDestination)) {
+                myDestinations.push(newDestination);
+                updateDisplay();
+            } else if (myDestinations.includes(newDestination)) {
+                alert('Destination already exists!');
+            }
+
+            newDestinationInput.value = '';
+        }
+        updateDisplay();
+    </script>
+</body>
+</html>
