@@ -16,11 +16,11 @@
     <script>
         let myDestinations = ['Barcelona', 'London', 'Berlin'];
 
-        function popDestination(index) {
+        function popDestination(i) {
             if (myDestinations.length === 0) {
                 destinationsDisplay.innerHTML = 'Nothing Left';
             } else {
-                myDestinations.splice(index, 1);
+                myDestinations.splice(i, 1);
                 destinationsDisplay.innerHTML = destinationHTMLwithButtons();
             }
         }
@@ -39,7 +39,9 @@
             let finalHTML = '';
             for (let i = 0; i < myDestinations.length; i++) {
                 const element = myDestinations[i];
-                let elementHTML = '<div>' + (i + 1) + '. <span style="color: red;">' + element + '<button onclick="popDestination(' + i + ')">Delete</button></div>';
+                // let elementHTML = '<div>' + (i+1) + '.<span style="color: red;">' + element + '<button onclick="popDestination('+i+')">Delete</button></div>';
+                let elementHTML = `<div>${i + 1}. <span style="color: red;">${element}</span><button onclick="popDestination(${i})">Delete</button></div>`;
+
                 finalHTML = finalHTML + elementHTML
             }
             return finalHTML;
