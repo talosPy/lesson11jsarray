@@ -40,7 +40,9 @@
             for (let i = 0; i < myDestinations.length; i++) {
                 const element = myDestinations[i];
                 // let elementHTML = '<div>' + (i+1) + '.<span style="color: red;">' + element + '<button onclick="popDestination('+i+')">Delete</button></div>';
-                let elementHTML = `<div>${i + 1}. <span style="color: red;">${element}</span><button onclick="popDestination(${i})">Delete</button></div>`;
+                let elementHTML = `<div>${i + 1}. <span style="color: red;">${element}
+                    </span><button onclick="popDestination(${i})">Delete</button>
+                    </div>`
 
                 finalHTML = finalHTML + elementHTML
             }
