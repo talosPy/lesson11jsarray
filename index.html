@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .card-img-top {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="container">
+
+    <div class="mt-4">
+        <input id="newDestination" class="form-control mb-2" placeholder="New Destination">
+        <button class="btn btn-primary mb-2" onclick="addDestination()">Add</button>
+        <input id="searchBar" class="form-control mb-4" placeholder="Search Destinations" oninput="searchDestinations()">
+        <div id="destinationsDisplay" class="row"></div>
+    </div>
+
+    <script>
+        let myDestinations = ['Barcelona', 'London', 'Berlin'];
+
+        function popDestination(i) {
+            myDestinations.splice(i, 1);
+            destinationsDisplay.innerHTML = destinationHTMLwithButtons();
+        }
+
+        function editDestination(i) {
+            const newDestination = prompt("Enter new destination:", myDestinations[i]);
+            if (newDestination) {
+                myDestinations[i] = newDestination;
+                destinationsDisplay.innerHTML = destinationHTMLwithButtons();
+            }
+        }
+
+        function addDestination() {
+            const newDest = newDestination.value.trim();
+            if (newDest && !myDestinations.includes(newDest)){
+                myDestinations.push(newDest);
+                newDestination.value = '';
+                destinationsDisplay.innerHTML = destinationHTMLwithButtons();
+            }
+        }
+
+        function searchDestinations() {
+            const searchQuery = searchBar.value.toLowerCase();
+            const filteredDestinations = myDestinations.filter(dest => dest.toLowerCase().includes(searchQuery));
+            destinationsDisplay.innerHTML = destinationHTMLwithButtons(filteredDestinations);
+        }
+
+        function destinationHTMLwithButtons(destinations = myDestinations) {
+            let finalHTML = '';
+            for (let i = 0; i < destinations.length; i++) {
+                const element = destinations[i];
+                let elementHTML = `
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="https://picsum.photos/300/180?random=${Math.random()}" class="card-img-top" alt="Random Image">
+                            <div class="card-body">
+                                <h5 class="card-title">${i + 1}. <span style="color: red;">${element}</span></h5>
+                                <button class="btn btn-warning" onclick="editDestination(${i})">Edit</button>
+                                <button class="btn btn-danger" onclick="popDestination(${i})">Delete</button>
+                            </div>
+                        </div>
+                    </div>`;
+                finalHTML += elementHTML;
+            }
+            return finalHTML;
+        }
+
+        destinationsDisplay.innerHTML = destinationHTMLwithButtons();
+    </script>
+</body>
+</html>
